@@ -1,27 +1,11 @@
 <div class="container">
-  <h2 class="text-center" style="margin-bottom: 20px">Search anime</h2>
-  <form
-    [formGroup]="searchForm"
-    (ngSubmit)="submitForm()"
-    class="w-50 mx-auto d-block"
+  <h2 class="text-center" style="margin-bottom: 20px">Searched Animes</h2>
+  <a
+    [routerLink]="['/']"
+    class="btn btn-primary text-center mx-auto d-block mb-5"
+    style="width: 120px"
+    >Home</a
   >
-    <div class="form-group">
-      <input
-        type="text"
-        class="form-control"
-        id="anime"
-        name="anime"
-        formControlName="anime"
-        placeholder="Enter anime name ex. Naruto"
-      />
-    </div>
-    <input
-      type="submit"
-      class="btn btn-primary my-3 text-center mx-auto d-block"
-      value="Submit"
-    />
-  </form>
-
   <div class="row">
     <app-anime *ngFor="let anime of animes" [anime]="anime" class="col-3">
     </app-anime>

@@ -6,6 +6,7 @@ import {
   Validators,
   AbstractControl,
 } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import axios from 'axios';
 
 @Component({
@@ -15,21 +16,14 @@ import axios from 'axios';
 })
 export class AnimeListComponent implements OnInit {
   animes: any[];
-  public searchForm: FormGroup;
-  constructor() {}
-
-  public initForm() {
-    this.searchForm = new FormGroup({
-      anime: new FormControl('', [Validators.required]),
-    });
-  }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.initForm();
+    this.fetchAnimes();
   }
 
-  submitForm() {
-    let searchTerm = this.searchForm.get('anime')?.value;
+  fetchAnimes() {
+    let searchTerm = this.route.snapshot.paramMap.get('term');
 
     axios
       .get(`https://api.jikan.moe/v3/search/anime?q=${searchTerm}`)
